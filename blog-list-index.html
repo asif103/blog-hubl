@@ -1,0 +1,331 @@
+<!--
+    templateType: blog_listing
+    isAvailableForNewContent: true
+    label: Test blog listing
+-->
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    {% if content.html_title %}<title>{{ content.html_title }}</title>{% endif %}
+    <meta name="description" content="{{ content.meta_description }}">
+    {% if brand_settings.primaryFavicon.src %}
+    <link rel="shortcut icon" href="{{ brand_settings.primaryFavicon.src }}" />
+    {% endif %}
+    <link rel="stylesheet" href="{{get_asset_url('/blog-style.css')}}" />
+    <style>
+
+    </style>
+    {{ standard_header_includes }}
+</head>
+
+<body>
+    <main>
+
+        {# Blog author listing #}
+
+        {% if blog_author %}
+        <section class="blog-listing-header">
+            {% if blog_author.avatar %}
+            <img src="{{ blog_author.avatar }}" alt="image of blog {{ blog_author.display_name }}">
+            {% endif %}
+            <h1>{{ blog_author.display_name }}</h1>
+            {% if blog_author.bio %}
+            <p>{{ blog_author.bio }}</p>
+            {% endif %}
+            {% if blog_author.has_social_profiles %}
+            <div>
+                {% if blog_author.website %}
+                <a href="{{ blog_author.website }}" target="_blank" rel="noopener">
+                    {% icon
+                    name="link",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on our website",
+                    width="10"
+                    %}
+                </a>
+                {% endif %}
+                {% if blog_author.facebook %}
+                <a href="{{ blog_author.facebook }}" target="_blank" rel="noopener">
+                    {% icon
+                    name="facebook-f",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on Facebook",
+                    width="10"
+                    %}
+                </a>
+                {% endif %}
+                {% if blog_author.linkedin %}
+                <a href="{{ blog_author.linkedin }}" target="_blank" rel="noopener">
+                    {% icon
+                    name="linkedin-in",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on LinkedIn",
+                    width="10"
+                    %}
+                </a>
+                {% endif %}
+                {% if blog_author.twitter %}
+                <a href="{{ blog_author.twitter }}" target="_blank" rel="noopener">
+                    {% icon
+                    name="twitter",
+                    purpose="semantic",
+                    style="SOLID",
+                    title="Follow us on Twitter",
+                    width="10"
+                    %}
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+        {% elif tag %}
+
+        {# Blog tag listing #}
+
+        <section class="blog-listing-header">
+            <h1>Posts about {{ page_meta.html_title|split(" | ")|last }}</h1>
+        </section>
+        {% else %}
+
+        {# Blog listing heading #}
+
+        <section class="blog-listing-header">
+            <h1>{{ group.public_title }}</h1>
+            <p>{{ group.description }}</p>
+          {% dnd_area "dnd_area_for_header"
+        label="Main section"
+        %}
+
+        {% dnd_section
+    vertical_alignment="TOP"
+  %}
+    
+  {% end_dnd_section %}
+        {% end_dnd_area %}
+        </section>
+        {% endif %}
+        <div class="blog-container">
+            <div class="sidebar-area">
+              <h2>
+                Filter area
+              </h2>
+                <div class="custom-filter-style">
+                    {# {% post_filter "post_filter" %} #}
+                    {% post_filter "posts_by_topic"
+                    select_blog="default",
+                    expand_link_text="see all",
+                    overrideable=False,
+                    list_title="Posts by Topic",
+                    max_links=5,
+                    filter_type="topic",
+                    label="Posts by Topic"
+                    %}
+                </div>
+                <div class="custom-filter-style">
+                    {# {% post_filter "post_filter" %} #}
+                    {% post_filter "posts_by_month"
+                    select_blog="default",
+                    expand_link_text="see all",
+                    overrideable=False,
+                    list_title="Posts by Month",
+                    max_links=5,
+                    filter_type="month",
+                    label="Posts by Month"
+                    %}
+                </div>
+                <div class="custom-filter-style">
+                    {# {% post_filter "post_filter" %} #}
+                    {% post_filter "posts_by_author"
+                    select_blog="default",
+                    expand_link_text="see all",
+                    overrideable=False,
+                    list_title="Posts by Author",
+                    max_links=5,
+                    filter_type="author",
+                    label="Posts by Author"
+                    %}
+                </div>
+
+                <!--       Custom design for filters -->
+                {% set tags = blog_tags('default') %}
+                {% for tag in tags %}
+                <a href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>
+                {% endfor %}
+                {% set authors = blog_authors('default') %}
+                {% for author in authors %}
+                <a href="{{ blog_author_url(group.id, author.slug) }}">{{ author.name }}</a>
+                {% endfor %}
+            </div>
+
+
+
+            <div class="main-content-area">
+                <div class="blog-filters">
+                    <input type="text" id="blogSearchInput" onkeyup="filterBlogs()" placeholder="Search for blogs...">
+
+                    <select id="categoryFilter" onchange="filterBlogs()">
+                        <option value="">All Categories</option>
+                        {% set categories = blog_tags('default') %}
+
+                        {% for category in categories %}
+                        {{category | pprint}}
+                        <option value="{{ category.name | lower }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select id="tagFilter" onchange="filterBlogs()">
+                        <option value="">All Tags</option>
+                        {% set tags = blog_tags('default') %}
+                        {% for tag in tags %}
+                        <option value="{{ tag.name | lower }}">{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select id="authorFilter" onchange="filterBlogs()">
+                        <option value="">All Authors</option>
+                        {% set authors = blog_authors('default') %}
+                        {% for author in authors %}
+                        <option value="{{ author.name | lower }}">{{ author.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select id="dateSort" onchange="filterBlogs()">
+                        <option value="desc">Newest First</option>
+                        <option value="asc">Oldest First</option>
+                    </select>
+                </div>
+
+                <div class="blog-listing">
+                    {% set blog_posts = contents %}
+                    {% for post in blog_posts %}
+                    <div class="blog-post" data-title="{{ post.name | lower }}"
+                        data-category="{{ post.topic_list | join(', ') | lower }}"
+                        data-tags="{{ post.tag_list | join(', ') | lower }}"
+                        data-author="{{ post.author.name | lower }}"
+                        data-date="{{ post.publish_date | datetimeformat('%Y-%m-%d') }}">
+
+                        {% if post.featured_image %}
+
+                        <div class="blog-image">
+                            <a href="{{ post.absolute_url }}">
+                                <img src="{{ post.featured_image }}" alt="{{ post.name }}" class="blog-featured">
+                            </a>
+                        </div>
+                        {% endif %}
+                        <div class="blog-content">
+                            <h2 class="blog-title">
+                                <a href="{{ post.absolute_url }}">{{ post.name }}</a>
+                            </h2>
+                            <p class="blog-date">{{ post.publish_date | format_datetime('MMMM D, YYYY') }}</p>
+                            <p class="blog-excerpt">{{ post.post_summary }}</p>
+                            <a class="read-more" href="{{ post.absolute_url }}">Read more</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+{% if contents.total_page_count > 1 %}
+<div class="blog-pagination">
+    {% set page_list = [-2, -1, 0, 1, 2] %}
+    {% if contents.total_page_count - current_page_num == 1 %}{% set offset = -1 %}
+    {% elif contents.total_page_count - current_page_num == 0 %}{% set offset = -2 %}
+    {% elif current_page_num == 2 %}{% set offset = 1 %}
+    {% elif current_page_num == 1 %}{% set offset = 2 %}
+    {% else %}{% set offset = 0 %}{% endif %}
+
+    <a class="blog-pagination__link blog-pagination__prev-link {{ "blog-pagination__prev-link--disabled" if !last_page_num }}" href="{{ blog_page_link(last_page_num) }}">
+        {% icon name="chevron-left" style="SOLID", width="13", no_wrapper=True %}
+        Prev
+    </a>
+    
+    {% for page in page_list %}
+        {% set this_page = current_page_num + page + offset %}
+        {% if this_page > 0 and this_page <= contents.total_page_count %}
+            <a class="blog-pagination__link blog-pagination__number-link {{ "blog-pagination__link--active" if this_page == current_page_num }}" href="{{ blog_page_link(this_page) }}">{{ this_page }}</a>
+        {% endif %}
+    {% endfor %}
+    
+    <a class="blog-pagination__link blog-pagination__next-link {{ "blog-pagination__next-link--disabled" if !next_page_num }}" href="{{ blog_page_link(current_page_num + 1) }}">
+        Next
+        {% icon name="chevron-right" style="SOLID", width="13", no_wrapper=True %}
+    </a>
+</div>
+{% endif %}
+
+            </div>
+        </div>
+        {% dnd_area "dnd_area"
+        label="Main section"
+        %}
+
+        {% dnd_section
+    vertical_alignment="TOP"
+  %}
+    {% dnd_column %}
+      {% dnd_row %}
+        {% dnd_module path="@hubspot/blog_posts" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row %}
+        {% dnd_module path="@hubspot/pagination" %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+        {% end_dnd_area %}
+
+    </main>
+    <script>
+        function filterBlogs() {
+            var searchInput = document.getElementById('blogSearchInput').value.toLowerCase();
+            var categoryFilter = document.getElementById('categoryFilter').value.toLowerCase();
+            var tagFilter = document.getElementById('tagFilter').value.toLowerCase();
+            var authorFilter = document.getElementById('authorFilter').value.toLowerCase();
+            var dateSort = document.getElementById('dateSort').value;
+            var blogPosts = Array.from(document.querySelectorAll('.blog-post'));
+
+            blogPosts.forEach(function (post) {
+                var title = post.getAttribute('data-title');
+                var category = post.getAttribute('data-category');
+                var tags = post.getAttribute('data-tags');
+                var author = post.getAttribute('data-author');
+
+                var matchesSearch = title.includes(searchInput);
+                var matchesCategory = categoryFilter === '' || category.includes(categoryFilter);
+                var matchesTags = tagFilter === '' || tags.includes(tagFilter);
+                var matchesAuthor = authorFilter === '' || author.includes(authorFilter);
+
+                if (matchesSearch && matchesCategory && matchesTags && matchesAuthor) {
+                    post.style.display = '';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            // Sort posts by date
+            blogPosts.sort(function (a, b) {
+                var dateA = new Date(a.getAttribute('data-date'));
+                var dateB = new Date(b.getAttribute('data-date'));
+
+                if (dateSort === 'asc') {
+                    return dateA - dateB;
+                } else {
+                    return dateB - dateA;
+                }
+            });
+
+            // Reorder blog posts in the DOM
+            var blogListing = document.querySelector('.blog-listing');
+            blogPosts.forEach(function (post) {
+                blogListing.appendChild(post);
+            });
+        }
+    </script>
+    {{ standard_footer_includes }}
+</body>
+
+</html>

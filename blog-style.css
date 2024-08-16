@@ -1,0 +1,501 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+*{
+  margin:0;
+  padding:0;
+}
+.blog-listing-header{
+  background:linear-gradient(0deg, #28282840, #00000060), url(https://corporate.walmart.com/content/corporate/en_us/purpose/sustainability/planet/nature/jcr:content/par/image_2_0.img.png/1693432526985.png);
+/*   background-image:url("https://corporate.walmart.com/content/corporate/en_us/purpose/sustainability/planet/nature/jcr:content/par/image_2_0.img.png/1693432526985.png"); */
+  background-size:cover;
+  background-repeat: no-repeat;
+  height: 40vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color: #ffffff;
+}
+.blog-listing-header h1{
+  font-size: 4rem;
+  margin:0;
+}
+.blog-listing-header p{
+  font-size: 1.5rem;
+}
+
+.blog-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
+.sidebar-area, .main-content-area{
+  padding: 20px;
+}
+.sidebar-area{
+background-color: #28282830;
+}
+.blog-listing {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-post {
+    margin: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    max-width: 27%;
+    padding: 20px;
+/*     border: 1px solid red; */
+    border-radius: 8px;
+    -webkit-box-shadow: 15px 15px 36px -25px rgba(0,0,0,0.75);
+-moz-box-shadow: 15px 15px 36px -25px rgba(0,0,0,0.75);
+box-shadow: 15px 15px 36px -25px rgba(0,0,0,0.75);
+  transition: all 0.5s ease-in-out;
+}
+.blog-post:hover{
+-webkit-box-shadow: 15px 14px 36px -15px rgba(0,0,0,0.75);
+-moz-box-shadow: 15px 14px 36px -15px rgba(0,0,0,0.75);
+box-shadow: 15px 14px 36px -15px rgba(0,0,0,0.75);
+}
+
+.blog-featured {
+    width: 100%;
+}
+
+.blog-title {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.blog-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.blog-title a:hover {
+    text-decoration: underline;
+}
+
+.blog-date {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.blog-excerpt {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+.blog-filters {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.blog-filters input,
+.blog-filters select,
+.blog-filters button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.blog-filters button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.blog-filters button:hover {
+    background-color: #0056b3;
+}
+
+.post-filter {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.post-filter-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.post-filter-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.post-filter-item {
+    margin-bottom: 10px;
+}
+
+.post-filter-link {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.post-filter-link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+.post-filter-expand {
+    display: block;
+    text-align: right;
+}
+
+
+
+
+.custom-filter-style .block .widget-module ul {
+/*     display: flex; */
+    list-style: none;
+
+}
+
+.custom-filter-style .block .widget-module ul li a {
+    display: inline-block;
+    text-decoration: none;
+    text-decoration: none;
+  padding: 8px 16px;
+  margin-bottom: 5px;
+  color: white;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #725fbf, #5340a1);
+  border-radius: 999px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.custom-filter-style .block .widget-module ul li a:hover {
+    color: #ffffff;
+   background: linear-gradient(to bottom, #282828, #5340a1);
+}
+
+
+/* pagination style */
+.blog-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.blog-pagination__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.blog-pagination__link:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.blog-pagination__link--active {
+    background-color: #007BFF;
+    color: #fff;
+    font-weight: bold;
+}
+
+.blog-pagination__prev-link--disabled,
+.blog-pagination__next-link--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.blog-pagination__link--active:hover {
+    background-color: #0056b3;
+}
+
+.blog-pagination__prev-link, 
+.blog-pagination__next-link {
+    display: flex;
+    align-items: center;
+}
+
+.blog-pagination__prev-link svg,
+.blog-pagination__next-link svg {
+    margin-right: 5px;
+}
+
+.blog-pagination__prev-link--disabled svg,
+.blog-pagination__next-link--disabled svg {
+    margin-right: 5px;
+    fill: #ccc;
+}
+
+
+
+/* Blog detail page */
+
+/* General Article Styles */
+article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Article Title */
+article h1 {
+    font-size: 32px;
+    color: #007BFF;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Author and Date */
+article > div:first-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+article a[rel="author"] {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+article a[rel="author"]:hover {
+    text-decoration: underline;
+}
+
+article time {
+    font-style: italic;
+    color: #555;
+}
+
+/* Post Body */
+article > div:nth-of-type(2) {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Tags Section */
+article > div:last-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+article a[rel="tag"] {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 16px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+article a[rel="tag"]:hover {
+    background-color: #0056b3;
+}
+
+article a[rel="tag"]:not(:last-child)::after {
+    content: ",";
+    margin-left: 5px;
+    color: #333;
+}
+/* Label Styling */
+.hs-form-field label {
+/*     background-color: tomato; /* Your existing color */ */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* Input Fields Styling */
+.hs-form-field input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Placeholder Styling */
+.hs-form-field input::placeholder {
+    color: red; /* Your existing color */
+    opacity: 0.7;
+}
+
+/* Focus State Styling */
+.hs-form-field input:focus {
+    border-color: tomato;
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.4);
+    outline: none;
+}
+
+/* General Form Field Styling */
+.hs-form-field {
+    margin-bottom: 20px;
+}
+
+/* Additional Styling for Form Submit Button */
+.hs-form-field input[type="submit"] {
+/*     background-color: tomato; */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.hs-form-field input[type="submit"]:hover {
+    background-color: #e04e4e;
+    transform: translateY(-2px);
+}
+
+.hs-form-field input[type="submit"]:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.4);
+}
+.comment-area{
+ max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* comment reply section */
+
+/* Comment Container */
+.comment-from {
+    padding: 10px 15px;
+    background-color: #f8f8f8;
+    border-left: 4px solid tomato;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-from h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Comment Date */
+.comment-date {
+    font-size: 12px;
+    color: #888;
+    margin: 5px 0 10px 15px;
+    padding-left: 10px;
+    border-left: 2px solid #eee;
+}
+
+/* Comment Body */
+.comment-body {
+    padding: 10px 15px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.comment-body p {
+    margin: 0;
+}
+
+/* Reply Button */
+.comment-reply-to {
+    background-color: tomato;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.comment-reply-to:hover {
+    background-color: #e04e4e;
+    transform: translateY(-2px);
+}
+
+.comment-reply-to:focus {
+    outline: none;
+    box-shadow: 0 0 6px rgba(255, 99, 71, 0.4);
+}
+
+/* General Spacing */
+.comment-section {
+    margin-bottom: 20px;
+}
+.hs-social-follow__icon{
+ background-color: red;
+}
+
+
